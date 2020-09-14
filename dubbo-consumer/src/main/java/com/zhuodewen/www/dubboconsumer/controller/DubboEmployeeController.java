@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("employee")
+@RequestMapping("/employee")
 public class DubboEmployeeController {
 
     //远程注入接口对象
@@ -20,7 +20,7 @@ public class DubboEmployeeController {
      * 查询所有员工信息
      * @return
      */
-    @GetMapping("selectAll")
+    @GetMapping("/selectAll")
     public List<DubboEmployee> selectAll(){
         return iDubboEmployeeService.selectAll();
     }
