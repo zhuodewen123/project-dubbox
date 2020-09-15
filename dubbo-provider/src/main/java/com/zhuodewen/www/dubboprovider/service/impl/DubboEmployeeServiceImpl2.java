@@ -11,10 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-//版本1,分组v1,负载策略轮询,超时5秒
-@Service(version = "1.0.0",group = "v1",loadbalance = "random",timeout=5000)
+//版本2,分组v1,负载策略轮询,超时5秒
+//@Service(version = "2.0.0",group = "v1",loadbalance = "random",timeout=5000)
+//版本1,分组v2,负载策略轮询,超时5秒
+@Service(version = "1.0.0",group = "v2",loadbalance = "random",timeout=5000)
 @Transactional
-public class DubboEmployeeServiceImpl implements IDubboEmployeeService {
+public class DubboEmployeeServiceImpl2 implements IDubboEmployeeService {
 
     @Autowired
     private DubboEmployeeMapper dubboEmployeeMapper;
@@ -22,8 +24,16 @@ public class DubboEmployeeServiceImpl implements IDubboEmployeeService {
     //查询所有员工信息
     @HystrixCommand(fallbackMethod="hystrixMethod")
     public List<DubboEmployee> selectAll() {
-        //int i=1/0;  //模拟hystrix容错
-        return dubboEmployeeMapper.selectAll();
+        List<DubboEmployee> list=new ArrayList<DubboEmployee>();
+        DubboEmployee em=new DubboEmployee();
+        em.setId(4L);
+        em.setAge(4);
+        em.setName("4");
+        em.setPhone("444444444444444444");
+        em.setAddress("444444444444444444");
+        em.setContent("版本2-测试");
+        list.add(em);
+        return list;
     }
 
     private List<DubboEmployee> hystrixMethod(){
@@ -34,7 +44,7 @@ public class DubboEmployeeServiceImpl implements IDubboEmployeeService {
         em.setName("6");
         em.setPhone("6666666666666666666");
         em.setAddress("66666666666666666666");
-        em.setContent("hystrix容错-测试v1");
+        em.setContent("hystrix容错-测试v2");
         list.add(em);
         return list;
     }
