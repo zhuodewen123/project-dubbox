@@ -49,6 +49,13 @@
             <artifactId>dubbo-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <!--Spring Security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
